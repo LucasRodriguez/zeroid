@@ -2,23 +2,23 @@
 
 ![WW3 ID compliance](https://img.shields.io/badge/WW3%20DID-In%20Progress-orange)
 
-⚠️ Note: The purpose of this protocol is not to provide a definition of identity or how to validate them. The intents is to facilitate the distribution issuance and verification of the identities in a completely private and sovereign manner.⚠️
+⚠️ Note: The purpose of this protocol is not to provide a definition of identity or how to validate them. The intents is to facilitate the distribution issuance and verification of the identities in a completely private and sovereign manner.
 
-⚠️ Note: The purpose of this protocol is not to provide a definition of identity or how to validate them. The intents is to facilitate the distribution issuance and verification of the identities in a completely private and sovereign manner.⚠️
+⚠️ Note: The purpose of this protocol is not to provide a definition of identity or how to validate them. The intents is to facilitate the distribution issuance and verification of the identities in a completely private and sovereign manner.
 
 As per the W3C DID standard the table below identifies the impact of benefits of decentralised identities:
-| Goal | Description |  |  |  |
-|---|---|---|---|---|
-| Decentralization | Eliminate the requirement for centralized authorities or single point failure in identifier management, including the registration of globally unique identifiers, public verification keys, services, and other information. |  |  |  |
-| Control | Give entities, both human and non-human, the power to directly control their digital identifiers without the need to rely on external authorities. |  |  |  |
-| Privacy | Enable entities to control the privacy of their information, including minimal, selective, and progressive disclosure of attributes or other data. |  |  |  |
-| Security | Enable sufficient security for requesting parties to depend on DID documents for their required level of assurance. |  |  |  |
-| Proof-based | Enable DID controllers to provide cryptographic proof when interacting with other entities. |  |  |  |
-| Discoverability | Make it possible for entities to discover DIDs for other entities, to learn more about or interact with those entities. |  |  |  |
-| Interoperability | Use interoperable standards so DID infrastructure can make use of existing tools and software libraries designed for interoperability. |  |  |  |
-| Portability | Be system- and network-independent and enable entities to use their digital identifiers with any system that supports DIDs and DID methods. |  |  |  |
-| Simplicity | Favor a reduced set of simple features to make the technology easier to understand, implement, and deploy. |  |  |  |
-| Extensibility | Where possible, enable extensibility provided it does not greatly hinder interoperability, portability, or simplicity. |  |  |  |
+| Goal | Description |
+|---|---|
+| Decentralization | Eliminate the requirement for centralized authorities or single point failure in identifier management, including the registration of globally unique identifiers, public verification keys, services, and other information. |
+| Control | Give entities, both human and non-human, the power to directly control their digital identifiers without the need to rely on external authorities. |
+| Privacy | Enable entities to control the privacy of their information, including minimal, selective, and progressive disclosure of attributes or other data. |
+| Security | Enable sufficient security for requesting parties to depend on DID documents for their required level of assurance. |
+| Proof-based | Enable DID controllers to provide cryptographic proof when interacting with other entities. |
+| Discoverability | Make it possible for entities to discover DIDs for other entities, to learn more about or interact with those entities. |
+| Interoperability | Use interoperable standards so DID infrastructure can make use of existing tools and software libraries designed for interoperability. |
+| Portability | Be system- and network-independent and enable entities to use their digital identifiers with any system that supports DIDs and DID methods. | 
+| Simplicity | Favor a reduced set of simple features to make the technology easier to understand, implement, and deploy. |
+| Extensibility | Where possible, enable extensibility provided it does not greatly hinder interoperability, portability, or simplicity. |
 
 ## Introduction
 
@@ -106,23 +106,27 @@ Consider the following scenario:
 A user wants to generate a verifiable unit for their birthday, and it has its passport on hand.
 The user would pass a KYC process with an authorised 3rd party. and receive an uuidv4 once he succesfully passes the KYC process. 
 We have to carry out some precautionary steps to prevent information leakage. 
-- Encrypt our ID with our public key(PubK). 
+- Encrypt our ID with our public key(PubK).
 - Generate a proof of knowledge of pre-image for the encrypted key(Pid). 
 - Generate a reencryption key (ReK)
 - Generate a Proof of delagation(Pdel) of the ReK, so the receiver can ensure they received the right ReK
 ```
 
-R<sub>k</sub>
+At this point we are prepared to:
 
-
-```text
-How can we trust that the information against which we generate a proof is correct and true?
-```
+- Proof any element of the verified document, including the birthday.
+- Hand over an encrypted reference of the key to a proxy
+- Hand over the re-encryption key to any party that requires it for compliance reasons.
+- Proof we handed over the correct key.
 
 What about compliance in the case of bad actors?
+With the above set up we have ensure the following process can take place:
 
-A picture is worth more than one thousand words so:
+1. Any service that has requested a centrally originated verifiable unit will also receive the re-encryption key for the ID of the service that verified the information.
+2. In case foul play is suspected the suspecting entity will renecrypt the original message in the proxy and hand over the supporting evidence to a delegator.
+3. The delegator will examine the evidence and will determine if they decrypt the Identifier from the proxy and initiate legal procedures with the help of the verification company.
 
+A picture is worth more than one thousand words so here you go:
 ![WW3 ID compliance](/zeroid/img/proxyReencryptionZk.png)
 
 ### Decentralised originators
