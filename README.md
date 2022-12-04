@@ -4,7 +4,8 @@
 
 ⚠️ Note: The purpose of this protocol is not to provide a definition of identity or how to validate them. The intents is to facilitate the distribution issuance and verification of the identities in a completely private and sovereign manner.
 
-As per the W3C DID standard the table below identifies the impact of benefits of decentralised identities:
+As per the W3C DID standard the table below identifies the benefits of decentralised identities:
+
 | Goal | Description |
 |---|---|
 | Decentralization | Eliminate the requirement for centralized authorities or single point failure in identifier management, including the registration of globally unique identifiers, public verification keys, services, and other information. |
@@ -16,9 +17,24 @@ As per the W3C DID standard the table below identifies the impact of benefits of
 | Interoperability | Use interoperable standards so DID infrastructure can make use of existing tools and software libraries designed for interoperability. |
 | Portability | Be system- and network-independent and enable entities to use their digital identifiers with any system that supports DIDs and DID methods. | 
 | Simplicity | Favor a reduced set of simple features to make the technology easier to understand, implement, and deploy. |
-| Extensibility | Where possible, enable extensibility provided it does not greatly hinder interoperability, portability, or simplicity. |
+| Extensibility | Where possible, enable extensibility provided it does not greatly hinder interoperability, portability, or simplicity. |\
 
-## Introduction
+## Table of Contents
+
+1. [Introduction](#Introduction)
+2. [Verifiable Units](#Verifiable-Units)
+3. [Actors](#Actors)
+3.a. [Prover](#Prover)
+3.b. [Actors](#Verifier)
+4. [Origination](#Origination)
+4.a. [Centralised Originators](#Centralised-Originators)
+4.b. [Decentralised originators](#Decentralised-originators)
+4.b.i [Actors](#How-does-a-decentralised-origination-happen?)
+5. [W3C DID Integration](#W3C-DID-Integration)
+6. [Reference Implementation Details](#Reference-Implementation-Details)
+7. [Definitions](#Definitions)
+
+### Introduction
 
 The following README describes the series of techniques that have to be in place to create and manage decentralised, fully private, and sovereign identities.
 
@@ -30,38 +46,58 @@ The protocol is interactive in the sense that verification is not stored and lat
 
 ZeroID has two main actors. A prover and a verifier
 
-## Prover
+### Verifiable Units
+
+Unique an  standalone provable statements tied to your biometrics. All verifiable units will be private by default but can be made sharable at any point in time. For example lets say you have proven that you own an email address. You can have either hide that email address and having your verifiable unit be:
+    I own a valid email address
+
+or alternatively your verifiable unit can be:
+    I own the email address demo@zeroid
+
+They serve different purposes and both can be stored concurrently.
+
+for example a) we could be signing up to a website. with out wanting to reveal our email. for the second one we might be signing up to a newsletter with out having to receive/click the confirmation email.
+
+### Actors
+
+#### Prover
 
 A prover is an actor that wants to demonstrate they posses certain characteristic, meet specific criteria, or that they are who they claim to be.
 
 A prover does not set out to prove his identity, but instead generates and manages a portfolio of verifiable units.
 All together they make up an identity or the elements the prover wishes to be identified for.
 
-A proof is made up of two simple elements. The verifiable unit, and the users biometrics.
+A proof is made up of two simple elements. The verifiable unit which can be public(plain text) or private(a hash of the plain text + a secret number), and the users biometrics.
 
-Proof elements:
+Private Proof elements:
 
 ```sh
 { verifiable_unit_hash: "5514eebea38bf2ac072b06c10f7fd78dc2f3b11647a75900ac86630f24825a85", biometrics_hash: "5dd1f5f328270cc967ba4c0ba2bd3fcee9a18a95bf3dd24b55ddb4e2900ed9fd"}
 ```
 
-These are then combined into a single hash:
+Public Proof elements:
+
+```sh
+{ verifiable_unit_hash: "A simple text to proof the design works as expected", biometrics_hash: "5dd1f5f328270cc967ba4c0ba2bd3fcee9a18a95bf3dd24b55ddb4e2900ed9fd"}
+```
+
+These are then combined into a single hash
 
 ```sh
 { proofHash: "e324d4e4370747238ef360a268476e40ace023d7d0574774fd125b5cc4e25623"}
 ```
 
-Therefore for a given hash of the users biometrics and knowledge of preimage of the veriafiable unit we can proof a user has tied its biometrics to a specific number.
+Therefore for a given hash of the users biometrics and knowledge of preimage of the veriafiable unit we can proof a user has tied its biometrics to a specific text.
 
 Both the biometrics and verifiable unit are determined, proved, and then discarded in the device. They are never socialised stored or leave the devices in any shape way or form.
 
-## Verifier
+#### Verifier
 
-The verifier is the person that wants to ensure the elements in a zeroid are correct and as advertised. A verifier will always ask for three things:
+The verifier is an actor that wants to ensure the elements in a proof are correct and as advertised. A verifier will always ask for three things:
 
 - A random secret to be included in the proof
 - A verified biometirc that matches the one in the other elements
-- The sub-proofs they want to verify
+- A list of the verifiable units required
 
 ```sh
 { uuid: "9cf447c2-de1b-463e-8699-3fde74605bbc", biometrics: true, verifiable_unit: [ age ] }
@@ -69,15 +105,15 @@ The verifier is the person that wants to ensure the elements in a zeroid are cor
 
 This data allows the verifier to:
 
-- Ensure the proof is unique and matches the request, its has not been reused
+- Ensure the proof is unique and matches the request
 - The prover is not impersonating a third party
 - The provers biometrics match the ones used for the creation of the verifiable units.
 
 This process describes a three step insurance policy seamlessly integrated into a recursive zero knowledge proof.
 
-## Origination
+### Origination
 
-Just because a user has ties their biometrics to a number, whether that is the number of their drivers license, their social security, or their lucky lotto number doesnt mean that it holds any value, and therefore doesnt mean he can be identified by that number.
+Just because a user has tied their biometrics to a number, or text, whether that is the number of their drivers license, their social security, or their lucky lotto number it doesnt mean that it holds any value, and therefore doesnt mean he can be correctly identified by that number.
 
 ```text
 How can we trust that the information against which we generate a proof is correct and true?
@@ -85,7 +121,7 @@ How can we trust that the information against which we generate a proof is corre
 
 Great  question, like with all complicated questions the answer depends on what youre trying to verify.
 
-### Centralised originators
+#### Centralised originators
 
 Centralised Originations like:
 
@@ -127,7 +163,7 @@ With the above set up we have ensure the following process can take place:
 A picture is worth more than one thousand words so here you go:
 ![WW3 ID compliance](./img/proxyReencryptionZk.png)
 
-### Decentralised originators
+#### Decentralised originators
 
 Decentralised identities make up other elements of your life things that, for now, dont have an army. Like:
 
@@ -142,15 +178,19 @@ Your identity is yours to share and socialise. But the more present you make you
 
 If you dont want to delegate your identity to governemnts you can build social credit. It doesnt mean every place will accept your score or that entities have any obligation to accept even the highest of scores, It just means that if you want to tell the government to go fuck it self then I genuinely belive you should have, at the very least, the option to do so.
 
-⚠️ This is not a social scoring system, if you want a dystopia go hit up blackmirror. This is just a meassure of how likely it is that you are who you claim to be based on a series of recommendations/recognitions from peers, institutions and businesses.
-
 There will be some very clear delimitations on how decentralised identities are marked up or down, and they will ofcourse be more succeptible to attacks by third parties.
 
-### How does a decentralised origination happen?
+⚠️ This is not a social scoring system modeling whether people like you or not, they can either agree that you exists or not, if you want a dystopia go hit up blackmirror or China (where if this is the tinniest bit succesful it will get banned). This is just a meassure of how likely it is that you are who you claim to be based on a series of recommendations/recognitions from peers, institutions and businesses.
+
+#### How does a decentralised origination happen?
 
 great questions lmao.
 
-## Reference Implementation Details
+### W3C DID Integration
+
+From the inception adhering to the DID standard has been a priority, and even though we have to bend the standard adherance a little bit to keep the soveraignity of the solution in place we offer the following workarounds. 
+
+### Reference Implementation Details
 
 - Proof system: PlonK
 - Verification on-chain (mainnet, FRI curve) of a PlonK proof
@@ -160,7 +200,7 @@ use-case.
 
 ⚠️ Note: PlonK can be instantiated with 2 polynomial commitment schemes
 
-## Definitions
+### Definitions
 
 Central uthority/ies - An agency or organization that is designated to play a key facilitating role in the implementation and operation of an international treaty in public and private international law.
 
