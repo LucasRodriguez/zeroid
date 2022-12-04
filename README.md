@@ -4,8 +4,6 @@
 
 ⚠️ Note: The purpose of this protocol is not to provide a definition of identity or how to validate them. The intents is to facilitate the distribution issuance and verification of the identities in a completely private and sovereign manner.
 
-⚠️ Note: The purpose of this protocol is not to provide a definition of identity or how to validate them. The intents is to facilitate the distribution issuance and verification of the identities in a completely private and sovereign manner.
-
 As per the W3C DID standard the table below identifies the impact of benefits of decentralised identities:
 | Goal | Description |
 |---|---|
