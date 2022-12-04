@@ -127,7 +127,7 @@ With the above set up we have ensure the following process can take place:
 3. The delegator will examine the evidence and will determine if they decrypt the Identifier from the proxy and initiate legal procedures with the help of the verification company.
 
 A picture is worth more than one thousand words so here you go:
-![WW3 ID compliance](/zeroid/img/proxyReencryptionZk.png)
+![WW3 ID compliance](./img/proxyReencryptionZk.png)
 
 ### Decentralised originators
 
@@ -144,9 +144,9 @@ Your identity is yours to share and socialise. But the more present you make you
 
 If you dont want to delegate your identity to governemnts you can build social credit. It doesnt mean every place will accept your score or that entities have any obligation to accept even the highest of scores, It just means that if you want to tell the government to go fuck it self then I genuinely belive you should have, at the very least, the option to do so.
 
-⚠️ This is not a social scoring system, if you want a dystopia go hit up blackmirror. This is just a meassure of how likely it is that you are who you claim to be based on a series of recommendations/recognition from peers institutions and businesses.
+⚠️ This is not a social scoring system, if you want a dystopia go hit up blackmirror. This is just a meassure of how likely it is that you are who you claim to be based on a series of recommendations/recognitions from peers, institutions and businesses.
 
-There will be some very clear delimitations on how decentralised identities are marked up or down.
+There will be some very clear delimitations on how decentralised identities are marked up or down, and they will ofcourse be more succeptible to attacks by third parties.
 
 ### How does a decentralised origination happen?
 
@@ -161,7 +161,6 @@ great questions lmao.
 use-case.
 
 ⚠️ Note: PlonK can be instantiated with 2 polynomial commitment schemes
-
 
 ## Definitions
 
