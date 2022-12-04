@@ -23,13 +23,13 @@ As per the W3C DID standard the table below identifies the benefits of decentral
 
 1. [Introduction](#Introduction)
 2. [Verifiable Units](#Verifiable-Units)
-3. [Actors](#Actors)
-3.a. [Prover](#Prover)
-3.b. [Actors](#Verifier)
-4. [Origination](#Origination)
-4.a. [Centralised Originators](#Centralised-Originators)
-4.b. [Decentralised originators](#Decentralised-originators)
-4.b.i [Actors](#How-does-a-decentralised-origination-happen?)
+3. [Actors](#Actors)\
+3a. [Prover](#Prover)\
+3b. [Actors](#Verifier)
+4. [Origination](#Origination)\
+4a. [Centralised Originators](#Centralised-Originators)\
+4b. [Decentralised originators](#Decentralised-originators)\
+4b.i. [Actors](#How-does-a-decentralised-origination-happen?)
 5. [W3C DID Integration](#W3C-DID-Integration)
 6. [Reference Implementation Details](#Reference-Implementation-Details)
 7. [Definitions](#Definitions)
