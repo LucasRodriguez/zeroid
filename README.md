@@ -131,18 +131,37 @@ A picture is worth more than one thousand words so here you go:
 
 ### Decentralised originators
 
-dsa
+Decentralised identities make up other elements of your life things that, for now, dont have an army. Like:
+
+- Universities
+- Schools
+- Social media
+- Phone providers
+- Your landlord
+- A friend
+
+Your identity is yours to share and socialise. But the more present you make yourself the more trustworthy you are.
+
+If you dont want to delegate your identity to governemnts you can build social credit. It doesnt mean every place will accept your score or that entities have any obligation to accept even the highest of scores, It just means that if you want to tell the government to go fuck it self then I genuinely belive you should have, at the very least, the option to do so.
+
+⚠️ This is not a social scoring system, if you want a dystopia go hit up blackmirror. This is just a meassure of how likely it is that you are who you claim to be based on a series of recommendations/recognition from peers institutions and businesses.
+
+There will be some very clear delimitations on how decentralised identities are marked up or down.
+
+### How does a decentralised origination happen?
+
+great questions lmao.
 
 ## Reference Implementation Details
 
 - Proof system: PlonK
 - Verification on-chain (mainnet, FRI curve) of a PlonK proof
-
-⚠️ Note: PlonK can be instantiated with 2 polynomial commitment schemes
-
 - FRI: proof composition, no need for a trusted setup, no need for a pairing-friendly curve
 - The proof verification (solidity smart contract) will be PlonK + FRI and is not tied to a particular
 use-case.
+
+⚠️ Note: PlonK can be instantiated with 2 polynomial commitment schemes
+
 
 ## Definitions
 
